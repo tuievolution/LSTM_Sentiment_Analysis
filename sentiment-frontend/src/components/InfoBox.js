@@ -1,5 +1,3 @@
-import React from 'react';
-
 const InfoBoxes = () => {
   return (
     <div className="footer-info-container fade-in">
