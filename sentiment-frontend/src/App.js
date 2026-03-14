@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useTheme } from './hooks/useTheme';
 import InputArea from './components/InputArea';
 import ResultDisplay from './components/ResultDisplay';
-import InfoBoxes from './components/InfoBoxes'; // Yeni bileşen
+import InfoBoxes from './components/InfoBoxes';
 import './App.css';
 
 function App() {
