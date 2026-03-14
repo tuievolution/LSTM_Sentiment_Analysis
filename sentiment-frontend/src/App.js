@@ -51,17 +51,12 @@ const handlePredict = async () => {
           <p>AI scores your comment from 1 to 5</p>
         </header>
 
-        <InputArea 
-          text={text} 
-          setText={setText} 
-          handlePredict={handlePredict} 
-          loading={loading} 
-        />
-
+        <InputArea text={text} setText={setText} handlePredict={handlePredict} loading={loading} />
         <ResultDisplay score={score} />
-
-        <InfoBoxes/>
       </main>
+
+      {/* Put InfoBoxes here at the bottom of the page */}
+      <InfoBoxes />
     </div>
   );
 }
