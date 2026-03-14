@@ -29,3 +29,5 @@ desktop.ini
 sentiment-frontend/node_modules/
 sentiment-frontend/build/
 .env 
+node_modules/
+/node_modules/
