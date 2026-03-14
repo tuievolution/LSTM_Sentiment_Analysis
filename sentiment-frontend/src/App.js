@@ -3,8 +3,9 @@ import axios from 'axios';
 import { useTheme } from './hooks/useTheme';
 import InputArea from './components/InputArea';
 import ResultDisplay from './components/ResultDisplay';
-import InfoBoxes from './components/InfoBoxes';
 import './App.css';
+import InfoBoxes from './components/InfoBoxes';
+//{ LeftInfoBox, RightInfoBox } from './components/InfoBoxes';
 
 function App() {
   const [text, setText] = useState('');
@@ -12,16 +13,18 @@ function App() {
   const [loading, setLoading] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
-  const handlePredict = async () => {
+const handlePredict = async () => {
     setLoading(true);
     try {
+      //{ text } yerine { review: text } yazarak backend'in beklediği formata çevrildi
       const response = await axios.post('https://tuievolution-sentiment-api.hf.space/predict', { 
         review: text 
       });
-      setScore(response.data.score);
+      
+      setScore(response.data.score); // Not: Backend "raw_score" veya "confidence" dönüyorsa burayı ona göre güncellemelisin
     } catch (error) {
-      console.error("API Hatası:", error);
-      alert("Sunucuya bağlanılamadı!");
+      console.error("API Hatası:", error); // Hatayı konsolda detaylı görmek için
+      alert("Sunucuya bağlanılamadı! Lütfen tekrar deneyin.");
     } finally {
       setLoading(false);
     }
@@ -30,20 +33,12 @@ function App() {
   return (
     <div className={`app-wrapper ${theme}`}>
       <nav className="navbar">
-        {/* İstediğin Gradient Tasarımlı Logo */}
-        <a href="https://tuievolution.vercel.app/" className="brand-link">
+        <h2>LSTM Sentiment Analysis</h2>
+        
+       <div className="nav-actions">
+          <a href="https://tuievolution.vercel.app/" className="brand-link">
           TUIEVOLUTION
         </a>
-        
-        <div className="nav-actions">
-          <a 
-            href="https://tuievolution.vercel.app/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="nav-link"
-          >
-            Other Projects
-          </a>
           
           <button onClick={toggleTheme} className="theme-toggle">
             {theme === 'light' ? '🌙' : '☀️'}
@@ -57,16 +52,11 @@ function App() {
           <p>AI scores your comment from 1 to 5</p>
         </header>
 
-        <InputArea 
-          text={text} 
-          setText={setText} 
-          handlePredict={handlePredict} 
-          loading={loading} 
-        />
+        <InputArea text={text} setText={setText} handlePredict={handlePredict} loading={loading} />
         <ResultDisplay score={score} />
       </main>
 
-      {/* Sayfanın en altında duracak bilgi kutuları */}
+      {/* Put InfoBoxes here at the bottom of the page */}
       <InfoBoxes />
     </div>
   );
