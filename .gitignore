@@ -28,6 +28,10 @@ desktop.ini
 # React
 sentiment-frontend/node_modules/
 sentiment-frontend/build/
+<<<<<<< HEAD
 .env 
 node_modules/
 /node_modules/
+=======
+.env 
+>>>>>>> source-repo/main

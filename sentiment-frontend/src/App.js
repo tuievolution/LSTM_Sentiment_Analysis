@@ -30,6 +30,8 @@ const handlePredict = async () => {
     }
   };
 
+
+
   return (
     <div className={`app-wrapper ${theme}`}>
       <nav className="navbar">
